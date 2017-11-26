@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/bg1"
+    android:id="@+id/ll">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+
+
+
+
+        <ImageView
+            android:id="@+id/iv_menu_user"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="30dp"
+            android:src="@drawable/account" />
+
+
+
+
+
+        <ImageView
+            android:id="@+id/btn_menu_journey"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/iv_menu_user"
+            android:src="@drawable/journey" />
+        <TextView
+            android:id="@+id/tv_menu_journey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_menu_journey"
+            android:layout_toRightOf="@+id/btn_menu_journey"
+            android:textSize="18dp"
+            android:textColor="@color/fontColor"
+            android:layout_marginLeft="5dp"
+            android:text="我的行程"/>
+
+        <ImageView
+            android:id="@+id/iv_menu_purse"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/btn_menu_journey"
+            android:src="@drawable/purse" />
+        <TextView
+            android:id="@+id/tv_menu_purse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_menu_purse"
+            android:layout_toRightOf="@+id/iv_menu_purse"
+            android:textSize="18dp"
+            android:textColor="@color/fontColor"
+            android:layout_marginLeft="5dp"
+            android:text="我的钱包"/>
+
+        <ImageView
+            android:id="@+id/iv_menu_friend"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/iv_menu_purse"
+            android:src="@drawable/friend" />
+        <TextView
+            android:id="@+id/tv_menu_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_menu_friend"
+            android:layout_toRightOf="@+id/iv_menu_friend"
+            android:textSize="18dp"
+            android:textColor="@color/fontColor"
+            android:layout_marginLeft="5dp"
+            android:text="邀请好友"/>
+
+        <ImageView
+            android:id="@+id/iv_menu_query"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/iv_menu_friend"
+            android:src="@drawable/query" />
+        <TextView
+            android:id="@+id/tv_menu_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_menu_query"
+            android:layout_toRightOf="@+id/iv_menu_query"
+            android:textSize="18dp"
+            android:textColor="@color/fontColor"
+            android:layout_marginLeft="5dp"
+            android:text="我的客服"/>
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

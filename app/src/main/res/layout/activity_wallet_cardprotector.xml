@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff"
+    android:weightSum="1"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+
+    <Button
+        android:id="@+id/btn_cp_buy"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="支付"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginLeft="15dip"
+        android:background="#f4ea2a"
+        />
+</RelativeLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg1">
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/rl_reminder_rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv_reminder_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.00"
+            android:layout_marginTop="50dp"
+            android:textSize="30dp"
+            android:textColor="#000"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总金额（元）"
+            android:textColor="@color/fontColor"
+            android:layout_below="@+id/tv_reminder_reminder"
+            android:layout_marginBottom="50dp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/ll_reminder_ll"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_below="@+id/rl_reminder_rl1">
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_reminder_reminder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.00"
+            android:textSize="18dp"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/fontColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="充值余额（元）"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_reminder_reminder1"
+            android:textColor="@color/fontColor"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@color/fontColor"></View>
+                <TextView
+                    android:id="@+id/tv_reminder_reminder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00"
+                    android:textSize="18dp"
+                    android:layout_margin="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/fontColor"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="充值余额（元）"
+                    android:layout_margin="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tv_reminder_reminder2"
+                    android:textColor="@color/fontColor"/>
+            </RelativeLayout>
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ll_reminder_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+   >
+    <Button
+        android:id="@+id/pay"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="充值"
+        android:layout_alignParentRight="true"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginLeft="15dip"
+        android:background="#f4ea2a"
+        />
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>
