@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,8 @@ public class MainActivity extends SlidingFragmentActivity {
     private RelativeLayout rl_main_bottom;
     private RelativeLayout rl_main_top;
     private RelativeLayout rl;
-    private ImageButton toparrow;
+    private LinearLayout llytop;
+    private ImageView toparrow;
     private ImageView bottomarrow;
     SlidingMenu slidingMenu;
     private RelativeLayout.LayoutParams params;
@@ -66,7 +68,9 @@ public class MainActivity extends SlidingFragmentActivity {
         ibtn_icon_user= (ImageView) findViewById(R.id.iv_main_user);
         rl_main_top= (RelativeLayout) findViewById(R.id.rl_main_top);
         rl_main_bottom= (RelativeLayout) findViewById(R.id.rl_main_bottom);
-        toparrow= (ImageButton) findViewById(R.id.iv_main_toparrow);
+        toparrow= (ImageView) findViewById(R.id.iv_main_toparrow);
+        llytop= (LinearLayout) findViewById(R.id.lly_top);
+
         bottomarrow= (ImageView) findViewById(R.id.iv_main_bottomarrow);
         msg= (ImageView) findViewById(R.id.iv_main_msg);
         rl= (RelativeLayout) findViewById(R.id.rl_main_rl);
@@ -114,10 +118,10 @@ public class MainActivity extends SlidingFragmentActivity {
             public void onClick(final View view) {
                 ValueAnimator valueAnimator = new ValueAnimator();
                 if (isOpen){
-                    valueAnimator.setIntValues(height-200,oldHeight);
+                    valueAnimator.setIntValues(height-100,oldHeight);
 
                 }else {
-                    valueAnimator.setIntValues(oldHeight,height-200);
+                    valueAnimator.setIntValues(oldHeight,height-100);
 
                 }
                 //设置监听的值
@@ -126,7 +130,7 @@ public class MainActivity extends SlidingFragmentActivity {
                     public void onAnimationUpdate(ValueAnimator animator) {
                         int value = (int) animator.getAnimatedValue();
                         params.topMargin=value;
-                        rl_main_bottom.setLayoutParams(params);
+                        rl_main_top.setLayoutParams(params);
 
                     }
                 });
@@ -142,9 +146,11 @@ public class MainActivity extends SlidingFragmentActivity {
                     public void onAnimationEnd(Animator animator) {
                         toparrow.setClickable(true);
                         if(isOpen){
-                            ibtn_icon_user.setVisibility(View.INVISIBLE);
-                            msg.setVisibility(View.INVISIBLE);
-                            rl.setVisibility(View.INVISIBLE);
+//                            ibtn_icon_user.setVisibility(View.INVISIBLE);
+//                            msg.setVisibility(View.INVISIBLE);
+//                            rl.setVisibility(View.INVISIBLE);
+                            llytop.setVisibility(View.INVISIBLE);
+
 
                         }
                     }
@@ -167,9 +173,10 @@ public class MainActivity extends SlidingFragmentActivity {
                 //Toast.makeText(MainActivity.this,"isOpen="+isOpen,Toast.LENGTH_SHORT).show();
 
                 if(!isOpen){
-                    ibtn_icon_user.setVisibility(View.VISIBLE);
-                    msg.setVisibility(View.VISIBLE);
-                    rl.setVisibility(View.VISIBLE);
+//                    ibtn_icon_user.setVisibility(View.VISIBLE);
+//                    msg.setVisibility(View.VISIBLE);
+//                    rl.setVisibility(View.VISIBLE);
+                    llytop.setVisibility(View.VISIBLE);
                 }
 
                 //进行旋转
