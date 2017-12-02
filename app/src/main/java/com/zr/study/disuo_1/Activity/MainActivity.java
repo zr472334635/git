@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +41,11 @@ public class MainActivity extends SlidingFragmentActivity {
     private RelativeLayout rl_main_bottom;
     private RelativeLayout rl_main_top;
     private RelativeLayout rl;
-    private LinearLayout llytop;
+
+    private LinearLayout llystart;
+    private LinearLayout llyend;
+    private Button btnsearch;
+
     private ImageView toparrow;
     private ImageView bottomarrow;
     SlidingMenu slidingMenu;
@@ -48,6 +53,8 @@ public class MainActivity extends SlidingFragmentActivity {
     private boolean isOpen = false; //是否开启状态
     int height=0;
     int oldHeight=0;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,8 +75,10 @@ public class MainActivity extends SlidingFragmentActivity {
         ibtn_icon_user= (ImageView) findViewById(R.id.iv_main_user);
         rl_main_top= (RelativeLayout) findViewById(R.id.rl_main_top);
         rl_main_bottom= (RelativeLayout) findViewById(R.id.rl_main_bottom);
-        toparrow= (ImageView) findViewById(R.id.iv_main_toparrow);
-        llytop= (LinearLayout) findViewById(R.id.lly_top);
+
+        llystart= (LinearLayout) findViewById(R.id.lly_start);
+        llyend= (LinearLayout) findViewById(R.id.lly_end);
+        btnsearch= (Button) findViewById(R.id.btn_serach);
 
         bottomarrow= (ImageView) findViewById(R.id.iv_main_bottomarrow);
         msg= (ImageView) findViewById(R.id.iv_main_msg);
@@ -85,7 +94,6 @@ public class MainActivity extends SlidingFragmentActivity {
         params.topMargin=oldHeight;
         rl_main_bottom.setLayoutParams(params);
 
-        initShowTopHide();
         initShowBottomHide();
         ibtn_icon_user.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,92 +106,6 @@ public class MainActivity extends SlidingFragmentActivity {
         x.view().inject(this);
     }
 
-    private void initShowTopHide() {
-        //布局完成
-        rl_main_top.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                //移除所有监听
-                rl_main_top.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                //mLayoutHeight = relativeLayout.getHeight();
-                System.out.println("得到的高度：" + oldHeight);
-                //隐藏当前控件
-                //relativeLayout.setPadding(0,-mLayoutHeight,0,0);
-            }
-        });
-
-        //点击,开始执行动画
-        toparrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                ValueAnimator valueAnimator = new ValueAnimator();
-                if (isOpen){
-                    valueAnimator.setIntValues(height-100,oldHeight);
-
-                }else {
-                    valueAnimator.setIntValues(oldHeight,height-100);
-
-                }
-                //设置监听的值
-                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animator) {
-                        int value = (int) animator.getAnimatedValue();
-                        params.topMargin=value;
-                        rl_main_top.setLayoutParams(params);
-
-                    }
-                });
-                //动画执行中监听
-                valueAnimator.addListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        //动画开始，不能点击
-                        toparrow.setClickable(false);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        toparrow.setClickable(true);
-                        if(isOpen){
-//                            ibtn_icon_user.setVisibility(View.INVISIBLE);
-//                            msg.setVisibility(View.INVISIBLE);
-//                            rl.setVisibility(View.INVISIBLE);
-                            llytop.setVisibility(View.INVISIBLE);
-
-
-                        }
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-
-                    }
-                });
-                isOpen = !isOpen;
-                valueAnimator.setDuration(500);
-                valueAnimator.start();
-                //状态更改
-
-                //Toast.makeText(MainActivity.this,"isOpen="+isOpen,Toast.LENGTH_SHORT).show();
-
-                if(!isOpen){
-//                    ibtn_icon_user.setVisibility(View.VISIBLE);
-//                    msg.setVisibility(View.VISIBLE);
-//                    rl.setVisibility(View.VISIBLE);
-                    llytop.setVisibility(View.VISIBLE);
-                }
-
-                //进行旋转
-                ViewCompat.animate(toparrow).rotationBy(180f).setDuration(500).start();
-            }
-        });
-    }
 
 
     private void initShowBottomHide() {
