@@ -89,7 +89,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.UserLogin" />
-        <activity android:name=".Activity.UserRegisterActivity"></activity>
+        <activity android:name=".Activity.UserRegisterActivity" />
+        <activity android:name=".Activity.TraditionalActivity" />
+        <activity android:name=".Activity.UpcomingEventsActivity"></activity>
     </application>
 
 </manifest>

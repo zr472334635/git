@@ -2,6 +2,8 @@ package com.zr.study.disuo_1.Activity;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -9,29 +11,19 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-import com.zr.study.disuo_1.Activity.Map.BaseMapActivity;
-import com.zr.study.disuo_1.Activity.leftmenu.CustomerActivity;
-import com.zr.study.disuo_1.Activity.leftmenu.InviteActivity;
-import com.zr.study.disuo_1.Activity.leftmenu.JourneyActivity;
-import com.zr.study.disuo_1.Activity.leftmenu.user.UserActivity;
-import com.zr.study.disuo_1.Activity.leftmenu.wallet.WalletActivity;
 import com.zr.study.disuo_1.R;
+import com.zr.study.disuo_1.dialog.RentDialog;
 import com.zr.study.disuo_1.fragment.LeftMenuFragment;
 import com.zr.study.disuo_1.fragment.MapFragment;
 
-import org.xutils.view.annotation.Event;
 import org.xutils.x;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class MainActivity extends SlidingFragmentActivity {
@@ -42,18 +34,18 @@ public class MainActivity extends SlidingFragmentActivity {
     private RelativeLayout rl_main_top;
     private RelativeLayout rl;
 
-    private LinearLayout llystart;
-    private LinearLayout llyend;
-    private Button btnsearch;
+
+    private ImageView iv_main_rent;
+
+    private ImageView ivmainmsg;
 
     private ImageView toparrow;
     private ImageView bottomarrow;
     SlidingMenu slidingMenu;
     private RelativeLayout.LayoutParams params;
     private boolean isOpen = false; //是否开启状态
-    int height=0;
-    int oldHeight=0;
-
+    int height = 0;
+    int oldHeight = 0;
 
 
     @Override
@@ -61,51 +53,20 @@ public class MainActivity extends SlidingFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         setBehindContentView(R.layout.left_menu);
         slidingMenu = getSlidingMenu();
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);//设置全屏触摸
         slidingMenu.setBehindOffset(300);//设置预留屏幕宽度
-        //slidingMenu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+
         initFragment();
-
-
-        ibtn_icon_user= (ImageView) findViewById(R.id.iv_main_user);
-        rl_main_top= (RelativeLayout) findViewById(R.id.rl_main_top);
-        rl_main_bottom= (RelativeLayout) findViewById(R.id.rl_main_bottom);
-
-        llystart= (LinearLayout) findViewById(R.id.lly_start);
-        llyend= (LinearLayout) findViewById(R.id.lly_end);
-        btnsearch= (Button) findViewById(R.id.btn_serach);
-
-        bottomarrow= (ImageView) findViewById(R.id.iv_main_bottomarrow);
-        msg= (ImageView) findViewById(R.id.iv_main_msg);
-        rl= (RelativeLayout) findViewById(R.id.rl_main_rl);
-
-        params= (RelativeLayout.LayoutParams) rl_main_bottom.getLayoutParams();
-        DisplayMetrics metrics=new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        final int width=metrics.widthPixels;
-        height=metrics.heightPixels;
-        final int densityDpi=metrics.densityDpi;
-        oldHeight=height-densityDpi*250/160;
-        params.topMargin=oldHeight;
-        rl_main_bottom.setLayoutParams(params);
+        initView();
 
         initShowBottomHide();
-        ibtn_icon_user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingMenu.toggle();
-            }
-        });
-
 
         x.view().inject(this);
-    }
+        initEvent();
 
+    }
 
 
     private void initShowBottomHide() {
@@ -127,11 +88,11 @@ public class MainActivity extends SlidingFragmentActivity {
             @Override
             public void onClick(final View view) {
                 ValueAnimator valueAnimator = new ValueAnimator();
-                if (isOpen){
-                    valueAnimator.setIntValues(height-200,oldHeight);
+                if (isOpen) {
+                    valueAnimator.setIntValues(height - 300, oldHeight);
 
-                }else {
-                    valueAnimator.setIntValues(oldHeight,height-200);
+                } else {
+                    valueAnimator.setIntValues(oldHeight, height - 300);
 
                 }
                 //设置监听的值
@@ -139,7 +100,7 @@ public class MainActivity extends SlidingFragmentActivity {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animator) {
                         int value = (int) animator.getAnimatedValue();
-                        params.topMargin=value;
+                        params.topMargin = value;
                         rl_main_bottom.setLayoutParams(params);
 
                     }
@@ -155,7 +116,7 @@ public class MainActivity extends SlidingFragmentActivity {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         bottomarrow.setClickable(true);
-                        if(isOpen){
+                        if (isOpen) {
                             ibtn_icon_user.setVisibility(View.INVISIBLE);
                             msg.setVisibility(View.INVISIBLE);
                             rl.setVisibility(View.INVISIBLE);
@@ -178,9 +139,8 @@ public class MainActivity extends SlidingFragmentActivity {
                 valueAnimator.start();
                 //状态更改
 
-                //Toast.makeText(MainActivity.this,"isOpen="+isOpen,Toast.LENGTH_SHORT).show();
 
-                if(!isOpen){
+                if (!isOpen) {
                     ibtn_icon_user.setVisibility(View.VISIBLE);
                     msg.setVisibility(View.VISIBLE);
                     rl.setVisibility(View.VISIBLE);
@@ -192,12 +152,90 @@ public class MainActivity extends SlidingFragmentActivity {
         });
     }
 
+    private void initView(){
+        ibtn_icon_user = (ImageView) findViewById(R.id.iv_main_user);
+        rl_main_top = (RelativeLayout) findViewById(R.id.rl_main_top);
+        rl_main_bottom = (RelativeLayout) findViewById(R.id.rl_main_bottom);
+        bottomarrow = (ImageView) findViewById(R.id.iv_main_bottomarrow);
+        msg = (ImageView) findViewById(R.id.iv_main_msg);
+        rl = (RelativeLayout) findViewById(R.id.rl_main_rl);
+        iv_main_rent = (ImageView) findViewById(R.id.iv_main_rent);
+        ivmainmsg = (ImageView) findViewById(R.id.iv_main_msg);
+        params = (RelativeLayout.LayoutParams) rl_main_bottom.getLayoutParams();
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        final int width = metrics.widthPixels;
+        height = metrics.heightPixels;
+        final int densityDpi = metrics.densityDpi;
+        oldHeight = height - densityDpi * 250 / 160;
+        params.topMargin = oldHeight;
+        rl_main_bottom.setLayoutParams(params);
+    }
+
+    private void initData(){
+
+    }
+
+    private void initEvent(){
+        ibtn_icon_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingMenu.toggle();
+            }
+        });
+
+        ivmainmsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UpcomingEventsActivity.class));
+            }
+        });
+
+
+        iv_main_rent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final RentDialog rentDialog = new RentDialog(MainActivity.this);
+                rentDialog.setTitle("终点");
+                rentDialog.setMessage("请输入目的地?");
+                rentDialog.setYesOnclickListener("确定", new RentDialog.onYesOnclickListener() {
+                    @Override
+                    public void onYesClick() {
+                        Toast.makeText(MainActivity.this,"点击了--确定--按钮",Toast.LENGTH_LONG).show();
+                        rentDialog.dismiss();
+                    }
+                });
+                rentDialog.setNoOnclickListener("取消", new RentDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        Toast.makeText(MainActivity.this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
+                        rentDialog.dismiss();
+                    }
+                });
+                rentDialog.show();
+
+
+
+                View.OnClickListener onClickListener = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        switch (v.getId()) {
+                            case R.id.btn_save:
+
+                                break;
+                        }
+                    }
+                };
+            }
+        });
+    }
 
 
     private void initFragment() {
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();//开启事物\
+        android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();//开启事物
 
 
         transaction.replace(R.id.fl_left_menu, new LeftMenuFragment());//用fragment替换
@@ -207,5 +245,5 @@ public class MainActivity extends SlidingFragmentActivity {
         transaction.commit();//提交事物
     }
 
-    
+
 }

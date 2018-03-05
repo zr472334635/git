@@ -2,7 +2,6 @@ package com.zr.study.disuo_1.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +15,6 @@ import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.LatLng;
-
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
@@ -38,37 +36,27 @@ import com.zr.study.disuo_1.R;
  * Created by 土豆泥 on 2017/8/28.
  */
 
-public class MapFragment extends Fragment implements AMap.OnMyLocationChangeListener,RouteSearch.OnRouteSearchListener,
-        AMap.OnMapClickListener,AMap.OnMarkerClickListener,AMap.OnInfoWindowClickListener,AMap.InfoWindowAdapter,INaviInfoCallback{
+public class MapFragment extends Fragment implements AMap.OnMyLocationChangeListener, AMap.OnMapClickListener, AMap.OnMarkerClickListener, AMap.OnInfoWindowClickListener, AMap.InfoWindowAdapter, INaviInfoCallback {
     private MapView mMapView;
     private AMap aMap;
-//    private String[] examples = new String[]{"起终点算路", "无起点算路", "途径点算路"};
-
-//    com.amap.api.maps.model.LatLng p1 = new com.amap.api.maps.model.LatLng(39.993266, 116.473193);//首开广场
-//    com.amap.api.maps.model.LatLng p2 = new com.amap.api.maps.model.LatLng(39.917337, 116.397056);//故宫博物院
-//    com.amap.api.maps.model.LatLng p3 = new com.amap.api.maps.model.LatLng(39.904556, 116.427231);//北京站
-//    com.amap.api.maps.model.LatLng p4 = new com.amap.api.maps.model.LatLng(39.773801, 116.368984);//新三余公园(南5环)
-//    com.amap.api.maps.model.LatLng p5 = new com.amap.api.maps.model.LatLng(40.041986, 116.414496);//立水桥(北5环)
 
     private SharedPreferences sp;
-
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_map,container,false);
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
         mMapView = (MapView) view.findViewById(R.id.map);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
         mMapView.onCreate(savedInstanceState);
 
-//        AmapNaviPage.getInstance().showRouteActivity(getContext(), new AmapNaviParams(new Poi("北京站", p3, ""), null, new Poi("故宫博物院", p5, ""), AmapNaviType.DRIVER), MapFragment.this);
+
         initMapService();
 
         return view;
@@ -104,8 +92,7 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
     }
 
 
-    private void initMapService( ){
-
+    private void initMapService() {
 
         AMap aMap = null;
         if (aMap == null) {
@@ -123,10 +110,13 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
 
         aMap.setOnMyLocationChangeListener(this);
 
-        SharedPreferences preferences=getActivity().getSharedPreferences("location",Context.MODE_PRIVATE);
-        String latitude=preferences.getString("latitude","32.344532");
-        String longitude=preferences.getString("longitude","119.397412");
-        getLocation(latitude,longitude);
+        SharedPreferences preferences = getActivity().getSharedPreferences("location", Context.MODE_PRIVATE);
+        String latitude = preferences.getString("latitude", "32.344532");
+        String longitude = preferences.getString("longitude", "119.397412");
+        getLocation(latitude, longitude);
+
+        getMarker(aMap);
+
 
 
 
@@ -139,8 +129,8 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
 //            getLocation(new LatLonPoint(location.getLatitude() ,location.getLongitude()));
             Bundle bundle = location.getExtras();
 
-            sp=getActivity().getSharedPreferences("location", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor=sp.edit();
+            sp = getActivity().getSharedPreferences("location", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
             editor.putString("latitude", String.valueOf(location.getLatitude()));
             editor.putString("longitude", String.valueOf(location.getLongitude()));
             editor.commit();
@@ -164,10 +154,10 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
     }
 
 
-    private void getLocation(String latitude,String longitude){
-        LatLonPoint latLonPoint=new LatLonPoint(Double.parseDouble(latitude),Double.parseDouble(longitude));
+    private void getLocation(String latitude, String longitude) {
+        LatLonPoint latLonPoint = new LatLonPoint(Double.parseDouble(latitude), Double.parseDouble(longitude));
         GeocodeSearch geocoderSearch = new GeocodeSearch(getContext());
-        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener(){
+        geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
 
             @Override
             public void onGeocodeSearched(GeocodeResult result, int rCode) {
@@ -179,19 +169,31 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
             public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
 
                 String formatAddress = result.getRegeocodeAddress().getFormatAddress();
-                Log.e("formatAddress", "formatAddress:"+formatAddress);
-                Log.e("formatAddress", "rCode:"+rCode);
+                Log.e("formatAddress", "formatAddress:" + formatAddress);
+                Log.e("formatAddress", "rCode:" + rCode);
 
-            }});
-        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 2000,GeocodeSearch.AMAP);
+            }
+        });
+        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 2000, GeocodeSearch.AMAP);
         geocoderSearch.getFromLocationAsyn(query);
 
     }
 
-    public void getMarker(AMap aMap){
+    public void getMarker(AMap aMap) {
+        LatLng latLng = new LatLng(39.906901,116.397972);
+        final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
+        // 定义 Marker 点击事件监听
+        AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
+            // marker 对象被点击时回调的接口
+            // 返回 true 则表示接口已响应事件，否则返回false
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                return false;
+            }
+        };
+
 
     }
-    
 
 
     @Override
@@ -259,23 +261,4 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
 
     }
 
-    @Override
-    public void onBusRouteSearched(BusRouteResult busRouteResult, int i) {
-
-    }
-
-    @Override
-    public void onDriveRouteSearched(DriveRouteResult driveRouteResult, int i) {
-
-    }
-
-    @Override
-    public void onWalkRouteSearched(WalkRouteResult walkRouteResult, int i) {
-
-    }
-
-    @Override
-    public void onRideRouteSearched(RideRouteResult rideRouteResult, int i) {
-
-    }
 }
