@@ -35,14 +35,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initView();
+        initData();
+        initEvent();
 
+    }
+
+    private void initView(){
         log_phone = (EditText) findViewById(R.id.actv_log_phone);
         log_pswd = (EditText) findViewById(R.id.et_log_pswd);
         btn_login = (Button) findViewById(R.id.btn_log_login);
         log_forgetpswd=(TextView)findViewById(R.id.tv_log_forgetpswd);
         log_reg= (TextView) findViewById(R.id.tv_log_reg);
+    }
 
+    private void initData(){
 
+    }
+
+    private void initEvent(){
         log_forgetpswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

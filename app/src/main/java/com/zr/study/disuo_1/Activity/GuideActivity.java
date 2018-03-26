@@ -43,24 +43,13 @@ public class GuideActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题
 
         setContentView(R.layout.activity_guide);
-        vpGuide= (ViewPager) findViewById(R.id.vpGuide);
-        llPointGroup= (LinearLayout) findViewById(R.id.ll_point_group);
-        viewRedPoint=findViewById(R.id.view_red_point);
-        btnStart= (Button) findViewById(R.id.btn_start);
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //更新sp,表示已经展示了新手引导
 
-                PreUtils.setBoolean(GuideActivity.this,"is_user_guide_showed",true);
-                //跳转主页面
-                startActivity(new Intent(GuideActivity.this,UserExitActivity.class));
-                finish();
-            }
-        });
+
 
         initViews();
+        initData();
+        initEvent();
         vpGuide.setAdapter(new GuideAdapter());
 
         vpGuide.setOnPageChangeListener(new GudiePageListener());
@@ -68,7 +57,11 @@ public class GuideActivity extends Activity {
 
 
     private void initViews(){
-         mImageViewList=new ArrayList<ImageView>();
+        vpGuide= (ViewPager) findViewById(R.id.vpGuide);
+        llPointGroup= (LinearLayout) findViewById(R.id.ll_point_group);
+        viewRedPoint=findViewById(R.id.view_red_point);
+        btnStart= (Button) findViewById(R.id.btn_start);
+        mImageViewList=new ArrayList<ImageView>();
 
         //初始化引导页的3个页面
         for (int i = 0; i < mImageIds.length; i++) {
@@ -101,7 +94,24 @@ public class GuideActivity extends Activity {
                 System.out.println(mPointWidth);
             }
         });
+    }
 
+    private void initData(){
+
+    }
+
+    private void initEvent(){
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //更新sp,表示已经展示了新手引导
+
+                PreUtils.setBoolean(GuideActivity.this,"is_user_guide_showed",true);
+                //跳转主页面
+                startActivity(new Intent(GuideActivity.this,UserExitActivity.class));
+                finish();
+            }
+        });
     }
     class GuideAdapter extends PagerAdapter {
         /**

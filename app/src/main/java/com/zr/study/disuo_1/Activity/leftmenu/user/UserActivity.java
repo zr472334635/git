@@ -51,6 +51,7 @@ public class UserActivity extends Activity {
     private TextView user_phone_in;
     private TextView user_weixin_in;
     private TextView user_qq_in;
+    private String titleString;
 
 
 
@@ -70,30 +71,15 @@ public class UserActivity extends Activity {
 
         upload(user);
 
+        initViews();
+        initData();
+        initEvent();
 
-        mytitle = (TextView) findViewById(R.id.mytitle);
         mytitle.setText("个人信息");
 
-        ibtn_back= (ImageView) findViewById(R.id.ibtn_back);
-        ibtn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(UserActivity.this,MainActivity.class));
-            }
-        });
-
-        ibtn_set= (ImageView) findViewById(R.id.ibtn_set);
-        ibtn_set.setVisibility(View.VISIBLE);
-        ibtn_set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(UserActivity.this,UserExitActivity.class));
-            }
-        });
 
 
-        startDateTime = (TextView) findViewById(R.id.tv_user_birth_in);
-        initViews();
+
         setListeners(phone);
 
     }
@@ -227,10 +213,39 @@ public class UserActivity extends Activity {
         user_phone_in= (TextView) findViewById(R.id.tv_user_phone_in);
         user_weixin_in= (TextView) findViewById(R.id.tv_user_weixin_in);
         user_qq_in= (TextView) findViewById(R.id.tv_user_qq_in);
+        mytitle = (TextView) findViewById(R.id.mytitle);
+        ibtn_back= (ImageView) findViewById(R.id.ibtn_back);
+        ibtn_set= (ImageView) findViewById(R.id.ibtn_set);
 
 
     }
 
+    private void initData(){
+        if(titleString!=null){
+            mytitle.setText(titleString);
+        }
+    }
+
+    private void initEvent(){
+        ibtn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserActivity.this,MainActivity.class));
+            }
+        });
+
+
+        ibtn_set.setVisibility(View.VISIBLE);
+        ibtn_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserActivity.this,UserExitActivity.class));
+            }
+        });
+
+
+        startDateTime = (TextView) findViewById(R.id.tv_user_birth_in);
+    }
 
     public void upload(String user){
         RequestParams params = new RequestParams(LOAD_URL+"/servlet/UserServlet");

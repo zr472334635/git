@@ -6,7 +6,7 @@ package com.zr.study.disuo_1.global;
 
 public class GlobalContants {
 
-    public static final String LOAD_URL="http://120.77.245.80:8080/disuo";
+    public static final String LOAD_URL="http://39.108.49.186:8080/disuo";
 //    public static final String LOAD_URL="http://172.30.136.236:8080/disuo";
 
 }

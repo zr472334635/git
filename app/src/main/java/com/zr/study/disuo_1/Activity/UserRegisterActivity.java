@@ -29,13 +29,26 @@ public class UserRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_register);
 
+        initView();
+        initData();
+        initEvent();
+
+    }
+
+
+
+    private void initView(){
         ureg_phone= (AutoCompleteTextView) findViewById(R.id.atcv_ureg_phone);
         ureg_pswd= (EditText) findViewById(R.id.edt_ureg_pswd);
         ureg_cofpswd= (EditText) findViewById(R.id.edt_ureg_cofpswd);
         ureg_regisiter= (Button) findViewById(R.id.btn_ureg_regisiter);
+    }
 
+    private void initData(){
 
+    }
 
+    private void initEvent(){
         ureg_regisiter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
