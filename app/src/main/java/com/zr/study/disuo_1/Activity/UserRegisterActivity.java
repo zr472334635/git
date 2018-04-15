@@ -66,7 +66,7 @@ public class UserRegisterActivity extends AppCompatActivity {
     }
 
     public void upload(String regphone,String regpswd,String cofpswd){
-        RequestParams params = new RequestParams(LOAD_URL+"/servlet/UserRegister");
+        RequestParams params = new RequestParams(LOAD_URL+"/servlet/UserRegisterServlet");
         params.addQueryStringParameter("regphone",regphone);
         params.addQueryStringParameter("regpswd",regpswd);
         params.addQueryStringParameter("cofpswd",cofpswd);

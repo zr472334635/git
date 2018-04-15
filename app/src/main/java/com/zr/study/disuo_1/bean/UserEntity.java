@@ -6,61 +6,160 @@ package com.zr.study.disuo_1.bean;
 
 public class UserEntity {
 
-    String nickname;
-    String sex;
-    String birthday;
-    String identity;
-    String telephone;
-    String wechat;
-    String qq;
-    public String getNickname() {
-        return nickname;
+    String Phone;
+    String Password;
+    String RepulationValue;
+    String Name;
+    String NickName;
+    String Sex;
+    String Birthday;
+    String Identity;
+    String IdentityCard;
+    String Wechat;
+    String QQ;
+    String CarNumber;
+    String Balance;
+    String CashPledge;
+    String UserCondition;
+
+    public String getPhone() {
+        return Phone;
     }
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getRepulationValue() {
+        return RepulationValue;
+    }
+
+    public void setRepulationValue(String repulationValue) {
+        RepulationValue = repulationValue;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getNickName() {
+        return NickName;
+    }
+
+    public void setNickName(String nickName) {
+        NickName = nickName;
+    }
+
     public String getSex() {
-        return sex;
+        return Sex;
     }
+
     public void setSex(String sex) {
-        this.sex = sex;
+        Sex = sex;
     }
+
     public String getBirthday() {
-        return birthday;
+        return Birthday;
     }
+
     public void setBirthday(String birthday) {
-        this.birthday = birthday;
+        Birthday = birthday;
     }
+
     public String getIdentity() {
-        return identity;
+        return Identity;
     }
+
     public void setIdentity(String identity) {
-        this.identity = identity;
+        Identity = identity;
     }
-    public String getTelephone() {
-        return telephone;
+
+    public String getIdentityCard() {
+        return IdentityCard;
     }
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+
+    public void setIdentityCard(String identityCard) {
+        IdentityCard = identityCard;
     }
+
     public String getWechat() {
-        return wechat;
+        return Wechat;
     }
+
     public void setWechat(String wechat) {
-        this.wechat = wechat;
+        Wechat = wechat;
     }
-    public String getQq() {
-        return qq;
+
+    public String getQQ() {
+        return QQ;
     }
-    public void setQq(String qq) {
-        this.qq = qq;
+
+    public void setQQ(String QQ) {
+        this.QQ = QQ;
+    }
+
+    public String getCarNumber() {
+        return CarNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        CarNumber = carNumber;
+    }
+
+    public String getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(String balance) {
+        Balance = balance;
+    }
+
+    public String getCashPledge() {
+        return CashPledge;
+    }
+
+    public void setCashPledge(String cashPledge) {
+        CashPledge = cashPledge;
+    }
+
+    public String getUserCondition() {
+        return UserCondition;
+    }
+
+    public void setUserCondition(String userCondition) {
+        UserCondition = userCondition;
     }
 
     @Override
     public String toString() {
-        return "UserEntity [nickname=" + nickname + ", sex=" + sex
-                + ", birthday=" + birthday + ", identity=" + identity
-                + ", telephone=" + telephone + ", wechat=" + wechat + ", qq="
-                + qq + "]";
+        return "UserEntity{" +
+                "Phone='" + Phone + '\'' +
+                ", Password='" + Password + '\'' +
+                ", RepulationValue='" + RepulationValue + '\'' +
+                ", Name='" + Name + '\'' +
+                ", NickName='" + NickName + '\'' +
+                ", Sex='" + Sex + '\'' +
+                ", Birthday='" + Birthday + '\'' +
+                ", Identity='" + Identity + '\'' +
+                ", IdentityCard='" + IdentityCard + '\'' +
+                ", Wechat='" + Wechat + '\'' +
+                ", QQ='" + QQ + '\'' +
+                ", CarNumber='" + CarNumber + '\'' +
+                ", Balance='" + Balance + '\'' +
+                ", CashPledge='" + CashPledge + '\'' +
+                ", UserCondition='" + UserCondition + '\'' +
+                '}';
     }
 }

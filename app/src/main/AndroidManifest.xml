@@ -37,8 +37,10 @@
         tools:replace="android:icon, android:theme,android:label">
         //开发者申请的key
         <meta-data
+
+
             android:name="com.amap.api.v2.apikey"
-            android:value="00cad122351db2ce77476399ea3380e0" />
+            android:value="a19a6ff79b218d08a1213ed5779906a1" />
 
         <service android:name="com.amap.api.location.APSService" />
 
@@ -88,7 +90,6 @@
             android:name="com.amap.api.navi.AmapRouteActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.UserLogin" />
         <activity android:name=".Activity.UserRegisterActivity" />
         <activity android:name=".Activity.TraditionalActivity" />
         <activity android:name=".Activity.UpcomingEventsActivity"></activity>

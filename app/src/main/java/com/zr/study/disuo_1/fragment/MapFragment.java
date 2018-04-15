@@ -1,7 +1,10 @@
 package com.zr.study.disuo_1.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
@@ -31,8 +35,25 @@ import com.amap.api.services.route.DriveRouteResult;
 import com.amap.api.services.route.RideRouteResult;
 import com.amap.api.services.route.RouteSearch;
 import com.amap.api.services.route.WalkRouteResult;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.zr.study.disuo_1.Activity.MainActivity;
+import com.zr.study.disuo_1.Activity.leftmenu.function.RentalActivity;
 import com.zr.study.disuo_1.R;
+import com.zr.study.disuo_1.bean.LockPointEntity;
+import com.zr.study.disuo_1.bean.UserEntity;
+
+import org.json.JSONArray;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+
+import static com.zr.study.disuo_1.global.GlobalContants.LOAD_URL;
 
 /**
  * Created by 土豆泥 on 2017/8/28.
@@ -41,6 +62,20 @@ import com.zr.study.disuo_1.R;
 public class MapFragment extends Fragment implements AMap.OnMyLocationChangeListener, AMap.OnMapClickListener, AMap.OnMarkerClickListener, AMap.OnInfoWindowClickListener, AMap.InfoWindowAdapter, INaviInfoCallback {
     private MapView mMapView;
     private AMap aMap;
+
+    String[] PLNo;
+    String[] DamagedCondition;
+    String[] Takenup;
+    String[] ExpiringDate;
+    String[] Profit;
+    String[] Booked;
+    String[] Longitude;
+    String[] Latitude;
+    String[] Position;
+
+    private ArrayList<LockPointEntity> list;
+    int locknumbers;
+
 
     private SharedPreferences sp;
 
@@ -58,8 +93,16 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
         mMapView.onCreate(savedInstanceState);
 
-
-        initMapService();
+        PLNo=new String[100];
+        DamagedCondition=new String[100];
+        Takenup=new String[100];
+        ExpiringDate=new String[100];
+        Profit=new String[100];
+        Booked=new String[100];
+        Longitude=new String[100];
+        Latitude=new String[100];
+        Position=new String[100];
+        download();
 
         return view;
     }
@@ -94,6 +137,73 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
     }
 
 
+    public void download() {
+        RequestParams params = new RequestParams(LOAD_URL + "/servlet/LockPointServlet");
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                //Json的解析类对象
+                JsonParser parser = new JsonParser();
+                //将JSON的String 转成一个JsonArray对象
+                JsonArray jsonArray = parser.parse(result).getAsJsonArray();
+                //解析result
+                Log.e("TAG", "onSuccess" + result);
+                Gson gson = new Gson();
+                ArrayList<LockPointEntity> list = new ArrayList<>();
+                for (JsonElement model :jsonArray){
+                    LockPointEntity lockPointEntity = gson.fromJson(model,LockPointEntity.class);
+                    list.add(lockPointEntity);
+                }
+
+//                String a= list.get(0).getExpiringDate();
+//                Toast.makeText(getContext(), a, Toast.LENGTH_SHORT).show();
+
+                locknumbers=list.size();
+                for(int i=0;i<locknumbers;i++){
+                    PLNo[i] = list.get(i).getPLNo();
+                    DamagedCondition[i] = list.get(i).getDamagedCondition();
+                    Takenup[i] = list.get(i).getTakenup();
+                    ExpiringDate[i] = list.get(i).getExpiringDate();
+                    Profit[i] = list.get(i).getProfit();
+                    Booked[i] = list.get(i).getBooked();
+                    Longitude[i] = list.get(i).getLongitude();
+                    Latitude[i] = list.get(i).getLatitude();
+                    Position[i] = list.get(i).getPosition();
+                }
+
+
+
+
+
+                Log.e("TAG", "onSuccess" + list);
+
+                initMapService();
+
+
+
+            }
+
+            //请求异常后的回调方法
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("TAG", "onError" + ex.getMessage());
+                Toast.makeText(getContext(), "200", Toast.LENGTH_SHORT).show();
+
+            }
+
+            //主动调用取消请求的回调方法
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Log.e("TAG", "onCancelled" + cex.getMessage());
+            }
+
+            @Override
+            public void onFinished() {
+                Log.e("TAG", "onFinished");
+            }
+        });
+    }
+
     private void initMapService() {
 
         AMap aMap = null;
@@ -118,8 +228,6 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
         getLocation(latitude, longitude);
 
         getMarker(aMap);
-
-
 
 
     }
@@ -181,11 +289,57 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
 
     }
 
+    public void getMarker(AMap aMap) {
+        for(int i=0;i<locknumbers;i++){
+            LatLng latLng = new LatLng(Double.parseDouble(Longitude[i]),Double.parseDouble(Latitude[i]));
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            markerOptions.title("地锁号："+PLNo[i]);
+            markerOptions.snippet("地点："+Position[i]+"\n");
+
+            final Marker marker = aMap.addMarker(markerOptions);
+            marker.setObject(PLNo[i]);
+        }
+        AMap.OnInfoWindowClickListener listener = new AMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                if(marker.getObject() != null){
+                    String m = (String) marker.getObject();
+                    Intent intent = new Intent(getActivity(), RentalActivity.class);
+                    intent.putExtra("plno", m);
+                    getActivity().startActivity(intent);
+                }
+                return;
+            }
+        };
+        aMap.setOnInfoWindowClickListener(listener);
+
+//        for (int i = 0; i < 1; i++) {
+//
+//            LatLng latLng = new LatLng(Double.parseDouble(Longitude[i]), Double.parseDouble(Latitude[i]));
+//            final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
+//            // 定义 Marker 点击事件监听
+//            final int finalI = i;
+//            AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
+//                // marker 对象被点击时回调的接口
+//                // 返回 true 则表示接口已响应事件，否则返回false
+//                @Override
+//                public boolean onMarkerClick(Marker marker) {
+//                    Log.e("你是一个好人", String.valueOf(finalI));
+//                    Toast.makeText(getContext(), Position[finalI], Toast.LENGTH_SHORT).show();
+//                    return true;
+//                }
+//            };
+//            aMap.setOnMarkerClickListener(markerClickListener);
+//        }
+
+
+
+    }
+
 //    public void getMarker(AMap aMap) {
-//        double[] Latitude={39.906901,40.906901,38.906901};
-//        double[] Longitude={116.397972,117.397972,118.397972};
-//        for(int i=0;i<3;i++) {
-//            LatLng latLng = new LatLng(Latitude[i], Longitude[i]);
+//
+//            LatLng latLng = new LatLng(32.344486, 118.397267);
 //            final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
 //            // 定义 Marker 点击事件监听
 //            AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
@@ -193,38 +347,17 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
 //                // 返回 true 则表示接口已响应事件，否则返回false
 //                @Override
 //                public boolean onMarkerClick(Marker marker) {
+//
 //                    Log.e("你是一个好人", "你是一个好人:" );
 //                    Toast.makeText(getContext(),"你是一个好人",Toast.LENGTH_SHORT).show();
-//                    return true;
+//                    return false;
 //                }
 //            };
-//        }
 //        aMap.setOnMarkerClickListener(markerClickListener);
 //
 //
+//
 //    }
-
-    public void getMarker(AMap aMap) {
-
-            LatLng latLng = new LatLng(32.344486, 118.397267);
-            final Marker marker = aMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
-            // 定义 Marker 点击事件监听
-            AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
-                // marker 对象被点击时回调的接口
-                // 返回 true 则表示接口已响应事件，否则返回false
-                @Override
-                public boolean onMarkerClick(Marker marker) {
-
-                    Log.e("你是一个好人", "你是一个好人:" );
-                    Toast.makeText(getContext(),"你是一个好人",Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            };
-        aMap.setOnMarkerClickListener(markerClickListener);
-
-
-
-    }
 
     @Override
     public View getInfoWindow(Marker marker) {
@@ -290,5 +423,8 @@ public class MapFragment extends Fragment implements AMap.OnMyLocationChangeList
     public void onStopSpeaking() {
 
     }
+
+
+
 
 }
