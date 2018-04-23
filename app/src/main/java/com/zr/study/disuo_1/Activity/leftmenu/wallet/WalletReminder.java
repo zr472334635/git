@@ -3,11 +3,15 @@ package com.zr.study.disuo_1.Activity.leftmenu.wallet;
 /**
  *
  */
+
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +21,7 @@ public class WalletReminder extends Activity {
     private ImageView ibtn_back;
     private TextView mytitle;
     private ImageView ibtn_close;
+    private Button btn_pay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +30,24 @@ public class WalletReminder extends Activity {
         setContentView(R.layout.activity_wallet_reminder);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 
-        mytitle = (TextView) findViewById(R.id.mytitle);
-        mytitle.setText("余额");
+        initView();
+        initData();
+        initEvent();
 
-        ibtn_back= (ImageView) findViewById(R.id.ibtn_back);
+    }
+
+    private void initView() {
+        mytitle = findViewById(R.id.mytitle);
+        ibtn_back = findViewById(R.id.ibtn_back);
+        ibtn_close = findViewById(R.id.ibtn_close);
+        btn_pay = findViewById(R.id.btn_pay);
+    }
+
+    private void initData() {
+        mytitle.setText("余额");
+    }
+
+    private void initEvent() {
         ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,7 +55,13 @@ public class WalletReminder extends Activity {
             }
         });
 
-        ibtn_close= (ImageView) findViewById(R.id.ibtn_close);
         ibtn_close.setVisibility(View.GONE);
+
+        btn_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
     }
 }

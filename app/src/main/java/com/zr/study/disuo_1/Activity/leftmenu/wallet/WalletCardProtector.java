@@ -26,10 +26,10 @@ public class WalletCardProtector extends Activity {
         setContentView(R.layout.activity_wallet_cardprotector);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 
-        mytitle = (TextView) findViewById(R.id.mytitle);
+        mytitle =  findViewById(R.id.mytitle);
         mytitle.setText("卡包");
 
-        ibtn_back= (ImageView) findViewById(R.id.ibtn_back);
+        ibtn_back=  findViewById(R.id.ibtn_back);
         ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,7 +37,7 @@ public class WalletCardProtector extends Activity {
             }
         });
 
-        ibtn_close= (ImageView) findViewById(R.id.ibtn_close);
+        ibtn_close=  findViewById(R.id.ibtn_close);
         ibtn_close.setVisibility(View.GONE);
     }
 

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.zr.study.disuo_1.Activity.MainActivity;
 import com.zr.study.disuo_1.Activity.Map.BaseMapActivity;
+import com.zr.study.disuo_1.Activity.ViewActActivity;
 import com.zr.study.disuo_1.Activity.leftmenu.CustomerActivity;
 import com.zr.study.disuo_1.Activity.leftmenu.InviteActivity;
 import com.zr.study.disuo_1.Activity.leftmenu.JourneyActivity;
@@ -50,7 +51,7 @@ public class LeftMenuFragment extends Basefragment {
                         startActivity(new Intent(mActivity, UserActivity.class));
                         break;
                     case R.id.tv_menu_journey:
-                        startActivity(new Intent(mActivity, JourneyActivity.class));
+                        startActivity(new Intent(mActivity, ViewActActivity.class));
                         break;
                     case R.id.tv_menu_purse:
                         startActivity(new Intent(mActivity, WalletActivity.class));

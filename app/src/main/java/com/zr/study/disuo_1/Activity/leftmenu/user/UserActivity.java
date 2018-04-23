@@ -252,6 +252,7 @@ public class UserActivity extends Activity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserActivity.this, MainActivity.class));
+
             }
         });
 
@@ -265,7 +266,7 @@ public class UserActivity extends Activity {
         });
 
 
-        startDateTime = (TextView) findViewById(R.id.tv_user_birth_in);
+        startDateTime =  findViewById(R.id.tv_user_birth_in);
     }
 
     public void download(String user) {

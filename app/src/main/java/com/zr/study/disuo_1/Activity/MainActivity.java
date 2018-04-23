@@ -2,17 +2,12 @@ package com.zr.study.disuo_1.Activity;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -185,12 +180,12 @@ public class MainActivity extends SlidingFragmentActivity {
             }
         });
 
-        ivmainmsg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, UpcomingEventsActivity.class));
-            }
-        });
+//        ivmainmsg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, UpcomingEventsActivity.class));
+//            }
+//        });
 
 
         iv_main_rent.setOnClickListener(new View.OnClickListener() {
