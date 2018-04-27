@@ -1,9 +1,10 @@
 package com.zr.study.disuo_1.dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,14 +12,14 @@ import android.widget.TextView;
 
 import com.zr.study.disuo_1.R;
 
+public class ChargeDialog extends Dialog {
 
-public class RentDialog extends Dialog {
 
-    Activity context;
-    private Button btn_confirm;
-    private Button btn_cancle;
-    private EditText edt_destination;
-    private TextView tv_rentDialogTitle;
+    private EditText edt_chargemoney;
+
+    private TextView tv_chargeDialogTitle;
+    private Button btn_diacharconfirm;
+    private Button btn_diacharcancle;
 
     private String titleStr;//从外界设置的title文本
     private String messageStr;//从外界设置的消息文本
@@ -28,8 +29,20 @@ public class RentDialog extends Dialog {
     //确定文本和取消文本的显示内容
     private String yesStr, noStr;
 
-    private onNoOnclickListener noOnclickListener;//取消按钮被点击了的监听器
-    private onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
+    private ChargeDialog.onNoOnclickListener noOnclickListener;//取消按钮被点击了的监听器
+    private ChargeDialog.onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
+
+    public ChargeDialog(@NonNull Context context) {
+        super(context);
+    }
+
+    public ChargeDialog(@NonNull Context context, int themeResId) {
+        super(context, themeResId);
+    }
+
+    protected ChargeDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+        super(context, cancelable, cancelListener);
+    }
 
 
 
@@ -38,7 +51,7 @@ public class RentDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 指定布局
-        setContentView(R.layout.rent_input);
+        setContentView(R.layout.dialog_charge);
 
         //按空白处不能取消动画
         setCanceledOnTouchOutside(false);
@@ -52,12 +65,30 @@ public class RentDialog extends Dialog {
 
     }
 
-    /**
-     * 初始化界面的确定和取消监听器
-     */
-    private void initEvent() {
-        //设置确定按钮被点击后，向外界提供监听
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
+    private void initView(){
+        edt_chargemoney=findViewById(R.id.edt_chargemoney);
+        btn_diacharconfirm=findViewById(R.id.btn_diacharconfirm);
+        btn_diacharcancle=findViewById(R.id.btn_diacharcancle);
+        tv_chargeDialogTitle=findViewById(R.id.tv_chargeDialogTitle);
+
+    }
+
+    private void initData(){
+        //如果用户自定了title和message
+        if (titleStr != null) {
+            tv_chargeDialogTitle.setText(titleStr);
+        }
+        //如果设置按钮的文字
+        if (yesStr != null) {
+            btn_diacharconfirm.setText(yesStr);
+        }
+        if (noStr != null) {
+            btn_diacharcancle.setText(noStr);
+        }
+    }
+
+    private void initEvent(){
+        btn_diacharconfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (yesOnclickListener != null) {
@@ -66,7 +97,7 @@ public class RentDialog extends Dialog {
             }
         });
         //设置取消按钮被点击后，向外界提供监听
-        btn_cancle.setOnClickListener(new View.OnClickListener() {
+        btn_diacharcancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (noOnclickListener != null) {
@@ -77,42 +108,12 @@ public class RentDialog extends Dialog {
     }
 
     /**
-     * 初始化界面控件的显示数据
-     */
-    private void initData() {
-        //如果用户自定了title和message
-        if (titleStr != null) {
-            tv_rentDialogTitle.setText(titleStr);
-        }
-        if (messageStr != null) {
-            edt_destination.setHint(messageStr);
-        }
-        //如果设置按钮的文字
-        if (yesStr != null) {
-            btn_confirm.setText(yesStr);
-        }
-        if (noStr != null) {
-            btn_cancle.setText(noStr);
-        }
-    }
-
-    /**
-     * 初始化界面控件
-     */
-    private void initView() {
-        edt_destination = findViewById(R.id.edt_destination);
-        tv_rentDialogTitle = findViewById(R.id.tv_rentDialogTitle);
-        btn_confirm = findViewById(R.id.btn_confirm);
-        btn_cancle = findViewById(R.id.btn_cancle);
-    }
-
-    /**
      * 设置取消按钮的显示内容和监听
      *
      * @param str
      * @param onNoOnclickListener
      */
-    public void setNoOnclickListener(String str, onNoOnclickListener onNoOnclickListener) {
+    public void setNoOnclickListener(String str, ChargeDialog.onNoOnclickListener onNoOnclickListener) {
         if (str != null) {
             noStr = str;
         }
@@ -125,24 +126,11 @@ public class RentDialog extends Dialog {
      * @param str
      * @param onYesOnclickListener
      */
-    public void setYesOnclickListener(String str, onYesOnclickListener onYesOnclickListener) {
+    public void setYesOnclickListener(String str, ChargeDialog.onYesOnclickListener onYesOnclickListener) {
         if (str != null) {
             yesStr = str;
         }
         this.yesOnclickListener = onYesOnclickListener;
-    }
-
-    public RentDialog(Context context) {
-        super(context);
-    }
-
-    public RentDialog(Context context, int themeResId) {
-        super(context, themeResId);
-    }
-
-    protected RentDialog(Context context, boolean cancelable
-            , OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
     }
 
     /**
