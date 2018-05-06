@@ -102,7 +102,7 @@ public class ViewActActivity extends AppCompatActivity {
                     EndTime[i] = list.get(i).getEndTime();
                     Renewal[i] = list.get(i).getRenewal();
 
-                    RentInfoEntity a= new RentInfoEntity(Fee[i],BookTime[i],PLNo[i]);
+                    RentInfoEntity a= new RentInfoEntity(Fee[i],StartTime[i],PLNo[i]);
                     rentinfo.add(a);
 
                 }

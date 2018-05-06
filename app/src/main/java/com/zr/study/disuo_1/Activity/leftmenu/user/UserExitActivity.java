@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zr.study.disuo_1.Activity.LoginActivity;
 import com.zr.study.disuo_1.Activity.MainActivity;
 import com.zr.study.disuo_1.R;
 
@@ -27,10 +28,8 @@ import org.xutils.x;
 
 public class UserExitActivity extends Activity {
 
-    private EditText user;
-    private EditText pswd;
-    private Button login;
-    private TextView forget_pwd;
+    private Button btn_exit;
+
 
     private ImageView ibtn_back;
     private TextView mytitle;
@@ -45,10 +44,9 @@ public class UserExitActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 
 
-        user = (EditText) findViewById(R.id.user);
-        pswd = (EditText) findViewById(R.id.pswd);
-        login = (Button) findViewById(R.id.login);
-        forget_pwd=(TextView)findViewById(R.id.forget_pwd);
+
+        btn_exit = (Button) findViewById(R.id.btn_exit);
+
 
 
         mytitle = (TextView) findViewById(R.id.mytitle);
@@ -62,59 +60,15 @@ public class UserExitActivity extends Activity {
             }
         });
 
-        forget_pwd.setOnClickListener(new View.OnClickListener() {
+        btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserExitActivity.this,MainActivity.class));
+                startActivity(new Intent(UserExitActivity.this,LoginActivity.class));
+                finish();
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-                ibtn_close= (ImageView) findViewById(R.id.ibtn_close);
-                ibtn_close.setVisibility(View.GONE);
-
-                RequestParams params = new RequestParams("http://192.168.12.1:8080/disuo/servlet/UserLoginServlet");
-                params.addQueryStringParameter("user",user.getText().toString());
-                params.addQueryStringParameter("pswd",pswd.getText().toString());
-                x.http().get(params, new Callback.CommonCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        //解析result
-                        Log.e("TAG","onSuccess"+result);
-                         if(Integer.parseInt(result)==1) {
-                            Toast.makeText(UserExitActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                             startActivity(new Intent(UserExitActivity.this,MainActivity.class));
-
-                        }else if(Integer.parseInt(result)==2){
-                            Toast.makeText(UserExitActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-                        }else
-                            {
-                            Toast.makeText(UserExitActivity.this, "账户不存在", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                    //请求异常后的回调方法
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
-                        Log.e("TAG","onError"+ex.getMessage());
-                    }
-                    //主动调用取消请求的回调方法
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-                        Log.e("TAG","onCancelled"+cex.getMessage());
-                    }
-                    @Override
-                    public void onFinished() {
-                        Log.e("TAG","onFinished");
-                    }
-                });
-
-            }
-        });
     }
 
 

@@ -21,10 +21,10 @@ public class InviteActivity extends Activity {
         setContentView(R.layout.activity_invite);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 
-        mytitle = (TextView) findViewById(R.id.mytitle);
+        mytitle =  findViewById(R.id.mytitle);
         mytitle.setText("邀请有奖");
 
-        ibtn_back= (ImageView) findViewById(R.id.ibtn_back);
+        ibtn_back=  findViewById(R.id.ibtn_back);
         ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -138,7 +138,7 @@ public class ChargeDialog extends Dialog {
      *
      * @param title
      */
-    public void setTitle(String title) {
+    public void setTitleS(String title) {
         titleStr = title;
     }
 

@@ -79,7 +79,7 @@ public class UserActivity extends Activity {
         initData();
         initEvent();
 
-        mytitle.setText("个人信息");
+
 
 
         setListeners(phone);
@@ -242,16 +242,18 @@ public class UserActivity extends Activity {
     }
 
     private void initData() {
+        mytitle.setText("个人信息");
         if (titleString != null) {
             mytitle.setText(titleString);
         }
+
     }
 
     private void initEvent() {
         ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserActivity.this, MainActivity.class));
+                finish();
 
             }
         });

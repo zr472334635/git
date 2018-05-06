@@ -61,7 +61,9 @@
         <activity
             android:name=".Activity.leftmenu.user.UserExitActivity"
             android:theme="@style/mytitlestyle" />
-        <activity android:name=".Activity.leftmenu.function.RentalActivity" />
+        <activity
+            android:name=".Activity.leftmenu.function.RentalActivity"
+            android:theme="@style/mytitlestyle" />
         <activity android:name=".Activity.Map.BaseMapActivity" />
         <activity
             android:name=".Activity.leftmenu.wallet.WalletCoupon"
@@ -90,7 +92,8 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.UserRegisterActivity" />
         <activity android:name=".Activity.ViewActActivity" />
-        <activity android:name=".Activity.leftmenu.wallet.ChargeMoneyActivity"></activity>
+        <activity android:name=".Activity.leftmenu.wallet.ChargeMoneyActivity" />
+        <activity android:name=".Activity.UpcomingEventsActivity"></activity>
     </application>
 
 </manifest>

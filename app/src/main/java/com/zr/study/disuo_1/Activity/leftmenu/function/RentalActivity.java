@@ -3,9 +3,9 @@ package com.zr.study.disuo_1.Activity.leftmenu.function;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +22,7 @@ import org.xutils.x;
 
 import static com.zr.study.disuo_1.global.GlobalContants.LOAD_URL;
 
-public class RentalActivity extends AppCompatActivity {
+public class RentalActivity extends Activity {
 
     private TextView tv_locknumber;
     private TextView tv_position;
@@ -58,7 +58,11 @@ public class RentalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_rental);
+
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_rental);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 
         SharedPreferences preferences = getSharedPreferences("userinfo", Activity.MODE_PRIVATE);
         String phone = preferences.getString("user", "");
@@ -87,6 +91,7 @@ public class RentalActivity extends AppCompatActivity {
     }
 
     private void initEvent(final String phone) {
+        btn_return.setVisibility(View.INVISIBLE);
         btn_rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -231,9 +236,9 @@ public class RentalActivity extends AppCompatActivity {
                 EndTime = rentinfo.getEndTime();
                 Renewal = rentinfo.getRenewal();
 
-                final ReturnDialog returnDialog = new ReturnDialog(RentalActivity.this);
+                final ReturnDialog returnDialog = new ReturnDialog(RentalActivity.this, R.style.MyDialog);
                 returnDialog.setTitle("行程");
-                returnDialog.setDireturntitle("行程");
+                returnDialog.setDireturntitle(" ");
                 returnDialog.setDiareturnst(StartTime);
                 returnDialog.setDiareturnbet(EndTime);
                 returnDialog.setDiareturnbt(BookTime);

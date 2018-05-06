@@ -2,6 +2,7 @@ package com.zr.study.disuo_1.bean;
 
 public class LockPointEntity {
     String PLNo;
+    String PLgroupNo;
     String DamagedCondition;
     String Takenup;
     String ExpiringDate;
@@ -17,6 +18,14 @@ public class LockPointEntity {
 
     public void setPLNo(String PLNo) {
         this.PLNo = PLNo;
+    }
+
+    public String getPLgroupNo() {
+        return PLgroupNo;
+    }
+
+    public void setPLgroupNo(String PLgroupNo) {
+        this.PLgroupNo = PLgroupNo;
     }
 
     public String getDamagedCondition() {
@@ -87,6 +96,7 @@ public class LockPointEntity {
     public String toString() {
         return "LockPointEntity{" +
                 "PLNo='" + PLNo + '\'' +
+                ", PLgroupNo='" + PLgroupNo + '\'' +
                 ", DamagedCondition='" + DamagedCondition + '\'' +
                 ", Takenup='" + Takenup + '\'' +
                 ", ExpiringDate='" + ExpiringDate + '\'' +

@@ -39,10 +39,10 @@ public class JourneyActivity extends Activity {
         setContentView(R.layout.activity_journey);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 
-        mytitle = (TextView) findViewById(R.id.mytitle);
+        mytitle =  findViewById(R.id.mytitle);
         mytitle.setText("我的行程");
 
-        ibtn_back = (ImageView) findViewById(R.id.ibtn_back);
+        ibtn_back =  findViewById(R.id.ibtn_back);
         ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public class JourneyActivity extends Activity {
     }
 
     private void initViews() {
-        listView = (ListView) findViewById(R.id.lv_journey_lv);
+        listView =  findViewById(R.id.lv_journey_lv);
 
     }
 

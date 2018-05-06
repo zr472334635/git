@@ -2,6 +2,7 @@ package com.zr.study.disuo_1.Activity;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.util.DisplayMetrics;
@@ -180,49 +181,50 @@ public class MainActivity extends SlidingFragmentActivity {
             }
         });
 
-//        ivmainmsg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, UpcomingEventsActivity.class));
-//            }
-//        });
+        ivmainmsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UpcomingEventsActivity.class));
+            }
+        });
 
 
         iv_main_rent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final RentDialog rentDialog = new RentDialog(MainActivity.this);
-                rentDialog.setTitle("终点");
-                rentDialog.setMessage("请输入目的地?");
-                rentDialog.setYesOnclickListener("确定", new RentDialog.onYesOnclickListener() {
-                    @Override
-                    public void onYesClick() {
-                        Toast.makeText(MainActivity.this,"点击了--确定--按钮",Toast.LENGTH_LONG).show();
-                        rentDialog.dismiss();
-                    }
-                });
-                rentDialog.setNoOnclickListener("取消", new RentDialog.onNoOnclickListener() {
-                    @Override
-                    public void onNoClick() {
-                        Toast.makeText(MainActivity.this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
-                        rentDialog.dismiss();
-                    }
-                });
-                rentDialog.show();
+//                final RentDialog rentDialog = new RentDialog(MainActivity.this);
+//                rentDialog.setTitle("终点");
+//                rentDialog.setMessage("请输入目的地?");
+//                rentDialog.setYesOnclickListener("确定", new RentDialog.onYesOnclickListener() {
+//                    @Override
+//                    public void onYesClick() {
+//                        Toast.makeText(MainActivity.this,"点击了--确定--按钮",Toast.LENGTH_LONG).show();
+//                        rentDialog.dismiss();
+//                    }
+//                });
+//                rentDialog.setNoOnclickListener("取消", new RentDialog.onNoOnclickListener() {
+//                    @Override
+//                    public void onNoClick() {
+//                        Toast.makeText(MainActivity.this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
+//                        rentDialog.dismiss();
+//                    }
+//                });
+//                rentDialog.show();
 
 
 
-                View.OnClickListener onClickListener = new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+//                View.OnClickListener onClickListener = new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        switch (v.getId()) {
+//                            case R.id.btn_save:
+//
+//                                break;
+//                        }
+//                    }
+//                };
 
-                        switch (v.getId()) {
-                            case R.id.btn_save:
-
-                                break;
-                        }
-                    }
-                };
             }
         });
     }

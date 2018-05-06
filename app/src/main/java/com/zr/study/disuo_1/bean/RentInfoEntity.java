@@ -13,7 +13,7 @@ public class RentInfoEntity {
 
     public RentInfoEntity(String fee,String time,String plno){
         this.Fee=fee;
-        this.BookTime=time;
+        this.StartTime=time;
         this.PLNo=plno;
     }
     public String getPhone() {

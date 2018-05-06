@@ -18,7 +18,7 @@ public class ViewActivityAdapter extends ArrayAdapter {
     private final int resourceId;
 
 
-    private TextView tv_vatime;
+    private TextView tv_start_time;
     private TextView tv_valocknum;
     private TextView tv_vafee;
     private LinearLayout ll_viewact;
@@ -33,14 +33,14 @@ public class ViewActivityAdapter extends ArrayAdapter {
 
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
 
-        tv_vatime= view.findViewById(R.id.tv_vatime);
+        tv_start_time= view.findViewById(R.id.tv_start_time);
         tv_valocknum= view.findViewById(R.id.tv_valocknum);
         tv_vafee= view.findViewById(R.id.tv_vafee);
         ll_viewact= view.findViewById(R.id.ll_viewact);
 
-        tv_vatime.setText(rentInfoEntity.getBookTime());
-        tv_vafee.setText(rentInfoEntity.getFee());
-        tv_valocknum.setText(rentInfoEntity.getPLNo());
+        tv_start_time.setText(rentInfoEntity.getStartTime());
+        tv_vafee.setText("￥"+rentInfoEntity.getFee());
+        tv_valocknum.setText("地锁号："+rentInfoEntity.getPLNo());
         return view;
     }
 }

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@mipmap/bg">
 
     <TextView
         android:id="@+id/tv_direturntitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="return" />
+        android:text="xingcheng"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,16 +18,20 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="借车时间" />
+            android:layout_weight="2"
+            android:text="借车时间"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
 
         <TextView
             android:id="@+id/tv_diareturnst"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,16 +40,20 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="还车时间" />
+            android:layout_weight="2"
+            android:text="还车时间"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
 
         <TextView
             android:id="@+id/tv_diareturnet"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,16 +62,20 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="计费时长" />
+            android:layout_weight="2"
+            android:text="计费时长"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
 
         <TextView
             android:id="@+id/tv_diareturnbt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,16 +84,20 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="金额" />
+            android:layout_weight="2"
+            android:text="金额"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
 
         <TextView
             android:id="@+id/tv_diareturnfee"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/shape_circle_input"/>
     </LinearLayout>
 
     <LinearLayout
@@ -94,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="cancle" />
+            android:text="cancle"
+            android:background="@drawable/shape_circle_btn"/>
     </LinearLayout>
 </LinearLayout>

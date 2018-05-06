@@ -20,89 +20,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_circle_input"
-                android:layout_marginTop="10dip"
-                android:layout_marginRight="15dip"
-                android:layout_marginLeft="15dip">
-
-                <ImageView
-                    android:layout_width="60px"
-                    android:layout_height="60px"
-                    android:layout_marginLeft="7dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/label_user"/>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorSkyBlue"></View>
-
-
-                <AutoCompleteTextView
-                    android:id="@+id/user"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="@string/phone"
-                    android:textColorHint="@color/colorSkyBlue"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_login"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="number"
-                    android:textCursorDrawable="@drawable/color_cursor"
-                    android:background="@null"
-
-                    android:maxLines="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_circle_input"
-                android:layout_marginTop="10dip"
-                android:layout_marginRight="15dip"
-                android:layout_marginLeft="15dip">
-
-                <ImageView
-                    android:layout_width="60px"
-                    android:layout_height="60px"
-                    android:layout_marginLeft="7dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/label_pwd"/>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/colorSkyBlue"></View>
-
-                <EditText
-                    android:id="@+id/pswd"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="@string/password"
-                    android:textColorHint="@color/colorSkyBlue"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_login"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
-                    android:textCursorDrawable="@drawable/color_cursor"
-                    android:background="@null"
-                    android:maxLines="1" />
-
-            </LinearLayout>
 
             <Button
-                android:id="@+id/login"
+                android:id="@+id/btn_exit"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:text="登陆"
+                android:text="退出"
                 android:layout_alignParentRight="true"
                 android:textSize="16sp"
                 android:textColor="@color/white"
@@ -111,26 +34,7 @@
                 android:layout_marginLeft="15dip"
                 android:background="@drawable/shape_circle_btn"
                 />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/toReg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="40dp"
-                    android:text="快速注册"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:id="@+id/forget_pwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="40dp"
-                    android:text="忘记密码"
-                    android:textColor="@color/white"/>
-            </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>
