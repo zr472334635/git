@@ -108,7 +108,7 @@ public class GuideActivity extends Activity {
 
                 PreUtils.setBoolean(GuideActivity.this,"is_user_guide_showed",true);
                 //跳转主页面
-                startActivity(new Intent(GuideActivity.this,UserExitActivity.class));
+                startActivity(new Intent(GuideActivity.this,LoginActivity.class));
                 finish();
             }
         });

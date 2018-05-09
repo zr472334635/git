@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.zr.study.disuo_1.R;
 import com.zr.study.disuo_1.bean.RentInfoEntity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ViewActivityAdapter extends ArrayAdapter {
@@ -33,14 +36,26 @@ public class ViewActivityAdapter extends ArrayAdapter {
 
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
 
-        tv_start_time= view.findViewById(R.id.tv_start_time);
-        tv_valocknum= view.findViewById(R.id.tv_valocknum);
-        tv_vafee= view.findViewById(R.id.tv_vafee);
-        ll_viewact= view.findViewById(R.id.ll_viewact);
+        tv_start_time = view.findViewById(R.id.tv_start_time);
+        tv_valocknum = view.findViewById(R.id.tv_valocknum);
+        tv_vafee = view.findViewById(R.id.tv_vafee);
+        ll_viewact = view.findViewById(R.id.ll_viewact);
 
-        tv_start_time.setText(rentInfoEntity.getStartTime());
-        tv_vafee.setText("￥"+rentInfoEntity.getFee());
-        tv_valocknum.setText("地锁号："+rentInfoEntity.getPLNo());
+        String str = rentInfoEntity.getStartTime();
+
+        try {
+
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date d = sd.parse(str);
+            String time = sd.format(d);
+
+            tv_start_time.setText(time);
+            tv_vafee.setText("￥" + rentInfoEntity.getFee());
+            tv_valocknum.setText("地锁号：" + rentInfoEntity.getPLNo());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 }

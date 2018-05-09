@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.zr.study.disuo_1.R;
-import com.zr.study.disuo_1.dialog.RentDialog;
 import com.zr.study.disuo_1.fragment.LeftMenuFragment;
 import com.zr.study.disuo_1.fragment.MapFragment;
 
@@ -148,7 +146,7 @@ public class MainActivity extends SlidingFragmentActivity {
         });
     }
 
-    private void initView(){
+    private void initView() {
         ibtn_icon_user = (ImageView) findViewById(R.id.iv_main_user);
         rl_main_top = (RelativeLayout) findViewById(R.id.rl_main_top);
         rl_main_bottom = (RelativeLayout) findViewById(R.id.rl_main_bottom);
@@ -169,11 +167,11 @@ public class MainActivity extends SlidingFragmentActivity {
         rl_main_bottom.setLayoutParams(params);
     }
 
-    private void initData(){
+    private void initData() {
 
     }
 
-    private void initEvent(){
+    private void initEvent() {
         ibtn_icon_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -189,44 +187,6 @@ public class MainActivity extends SlidingFragmentActivity {
         });
 
 
-        iv_main_rent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                final RentDialog rentDialog = new RentDialog(MainActivity.this);
-//                rentDialog.setTitle("终点");
-//                rentDialog.setMessage("请输入目的地?");
-//                rentDialog.setYesOnclickListener("确定", new RentDialog.onYesOnclickListener() {
-//                    @Override
-//                    public void onYesClick() {
-//                        Toast.makeText(MainActivity.this,"点击了--确定--按钮",Toast.LENGTH_LONG).show();
-//                        rentDialog.dismiss();
-//                    }
-//                });
-//                rentDialog.setNoOnclickListener("取消", new RentDialog.onNoOnclickListener() {
-//                    @Override
-//                    public void onNoClick() {
-//                        Toast.makeText(MainActivity.this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
-//                        rentDialog.dismiss();
-//                    }
-//                });
-//                rentDialog.show();
-
-
-
-//                View.OnClickListener onClickListener = new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        switch (v.getId()) {
-//                            case R.id.btn_save:
-//
-//                                break;
-//                        }
-//                    }
-//                };
-
-            }
-        });
     }
 
 
@@ -234,10 +194,8 @@ public class MainActivity extends SlidingFragmentActivity {
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();//开启事物
 
-
         transaction.replace(R.id.fl_left_menu, new LeftMenuFragment());//用fragment替换
         transaction.replace(R.id.fl_map, new MapFragment());
-
 
         transaction.commit();//提交事物
     }

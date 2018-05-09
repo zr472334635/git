@@ -20,6 +20,10 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.zr.study.disuo_1.global.GlobalContants.LOAD_URL;
 
 public class RentalActivity extends Activity {
@@ -239,8 +243,26 @@ public class RentalActivity extends Activity {
                 final ReturnDialog returnDialog = new ReturnDialog(RentalActivity.this, R.style.MyDialog);
                 returnDialog.setTitle("行程");
                 returnDialog.setDireturntitle(" ");
-                returnDialog.setDiareturnst(StartTime);
-                returnDialog.setDiareturnbet(EndTime);
+                SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                try {
+
+                    Date s = sd.parse(StartTime);
+                    String starttime = sd.format(s);
+                    returnDialog.setDiareturnst(starttime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+
+                    Date e = sd.parse(EndTime);
+                    String endtime = sd.format(e);
+                    returnDialog.setDiareturnet(endtime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 returnDialog.setDiareturnbt(BookTime);
                 returnDialog.setDiareturnfee(Fee);
                 returnDialog.setNoOnclickListener("确定", new ReturnDialog.onNoOnclickListener() {

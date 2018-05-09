@@ -50,7 +50,7 @@ public class UserExitActivity extends Activity {
 
 
         mytitle = (TextView) findViewById(R.id.mytitle);
-        mytitle.setText("设置");
+        mytitle.setText("退出");
 
         ibtn_back= (ImageView) findViewById(R.id.ibtn_back);
         ibtn_back.setOnClickListener(new View.OnClickListener() {

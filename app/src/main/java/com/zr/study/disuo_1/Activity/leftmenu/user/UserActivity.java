@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.zr.study.disuo_1.Activity.MainActivity;
 import com.zr.study.disuo_1.R;
 import com.zr.study.disuo_1.bean.UserEntity;
 
@@ -78,8 +77,6 @@ public class UserActivity extends Activity {
         initViews();
         initData();
         initEvent();
-
-
 
 
         setListeners(phone);
@@ -215,28 +212,28 @@ public class UserActivity extends Activity {
     }
 
     private void initViews() {
-        llusernickname =  findViewById(R.id.ll_user_nickname);
-        llusersex =  findViewById(R.id.ll_user_sex);
-        lluserbirthday =  findViewById(R.id.ll_user_birthday);
-        lluseridentity =  findViewById(R.id.ll_user_identity);
-        llusertele =  findViewById(R.id.ll_user_tele);
-        lluserwechat =  findViewById(R.id.ll_user_wechat);
-        lluserqq =  findViewById(R.id.ll_user_qq);
-        llusercarnumber =  findViewById(R.id.ll_user_carnumber);
+        llusernickname = findViewById(R.id.ll_user_nickname);
+        llusersex = findViewById(R.id.ll_user_sex);
+        lluserbirthday = findViewById(R.id.ll_user_birthday);
+        lluseridentity = findViewById(R.id.ll_user_identity);
+        llusertele = findViewById(R.id.ll_user_tele);
+        lluserwechat = findViewById(R.id.ll_user_wechat);
+        lluserqq = findViewById(R.id.ll_user_qq);
+        llusercarnumber = findViewById(R.id.ll_user_carnumber);
 
-        tv_username=findViewById(R.id.tv_username);
-        user_repulationvalue=findViewById(R.id.tv_repulationvalue);
-        user_nickname_in =  findViewById(R.id.tv_user_nickname_in);
-        user_sex_in =  findViewById(R.id.tv_user_sex_in);
-        user_birth_in =  findViewById(R.id.tv_user_birth_in);
-        user_identity_in =  findViewById(R.id.tv_user_identity_in);
-        user_phone_in =  findViewById(R.id.tv_user_phone_in);
-        user_weixin_in =  findViewById(R.id.tv_user_weixin_in);
-        user_qq_in =  findViewById(R.id.tv_user_qq_in);
-        user_carnumber_in=findViewById(R.id.tv_user_carnumber_in);
-        mytitle =  findViewById(R.id.mytitle);
-        ibtn_back =  findViewById(R.id.ibtn_back);
-        ibtn_set =  findViewById(R.id.ibtn_set);
+        tv_username = findViewById(R.id.tv_username);
+        user_repulationvalue = findViewById(R.id.tv_repulationvalue);
+        user_nickname_in = findViewById(R.id.tv_user_nickname_in);
+        user_sex_in = findViewById(R.id.tv_user_sex_in);
+        user_birth_in = findViewById(R.id.tv_user_birth_in);
+        user_identity_in = findViewById(R.id.tv_user_identity_in);
+        user_phone_in = findViewById(R.id.tv_user_phone_in);
+        user_weixin_in = findViewById(R.id.tv_user_weixin_in);
+        user_qq_in = findViewById(R.id.tv_user_qq_in);
+        user_carnumber_in = findViewById(R.id.tv_user_carnumber_in);
+        mytitle = findViewById(R.id.mytitle);
+        ibtn_back = findViewById(R.id.ibtn_back);
+        ibtn_set = findViewById(R.id.ibtn_set);
 
 
     }
@@ -268,7 +265,7 @@ public class UserActivity extends Activity {
         });
 
 
-        startDateTime =  findViewById(R.id.tv_user_birth_in);
+        startDateTime = findViewById(R.id.tv_user_birth_in);
     }
 
     public void download(String user) {
@@ -282,7 +279,7 @@ public class UserActivity extends Activity {
                 Gson gson = new Gson();
                 UserEntity userinfo = gson.fromJson(result, UserEntity.class);
                 tv_username.setText(userinfo.getName());
-                user_repulationvalue.setText("绿色分"+userinfo.getRepulationValue());
+                user_repulationvalue.setText("绿色分" + userinfo.getRepulationValue());
                 user_nickname_in.setText(userinfo.getNickName());
                 user_sex_in.setText(userinfo.getSex());
                 user_birth_in.setText(userinfo.getBirthday());

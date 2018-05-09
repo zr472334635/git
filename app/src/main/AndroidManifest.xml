@@ -93,7 +93,8 @@
         <activity android:name=".Activity.UserRegisterActivity" />
         <activity android:name=".Activity.ViewActActivity" />
         <activity android:name=".Activity.leftmenu.wallet.ChargeMoneyActivity" />
-        <activity android:name=".Activity.UpcomingEventsActivity"></activity>
+        <activity android:name=".Activity.UpcomingEventsActivity" />
+        <activity android:name=".Activity.ForgetPasswordActivity"></activity>
     </application>
 
 </manifest>

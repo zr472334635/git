@@ -129,7 +129,7 @@ public class ReturnDialog extends Dialog {
     /**
      * @param Sdiareturnet
      */
-    public void setDiareturnbet(String Sdiareturnet) {
+    public void setDiareturnet(String Sdiareturnet) {
         diareturnet = Sdiareturnet;
     }
 

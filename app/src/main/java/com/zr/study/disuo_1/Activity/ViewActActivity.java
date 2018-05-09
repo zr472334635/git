@@ -92,6 +92,7 @@ public class ViewActActivity extends AppCompatActivity {
                 }
 
 
+
                 for (int i = 0; i < list.size(); i++) {
                     Phone[i] = list.get(i).getPhone();
                     PLNo[i] = list.get(i).getPLNo();

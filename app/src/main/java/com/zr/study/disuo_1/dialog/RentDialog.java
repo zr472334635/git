@@ -32,8 +32,6 @@ public class RentDialog extends Dialog {
     private onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
