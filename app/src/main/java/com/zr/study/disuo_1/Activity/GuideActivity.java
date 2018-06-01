@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class GuideActivity extends Activity {
 
-    private static  final int[] mImageIds=new int[]{R.drawable.guide_1,R.drawable.guide_2,R.drawable.guide_3};
+    private static  final int[] mImageIds=new int[]{R.drawable.guide_01,R.drawable.guide_02,R.drawable.guide_03};
     private ViewPager vpGuide;
     private ArrayList<ImageView> mImageViewList;
     private LinearLayout llPointGroup;//引导原点的父控件
@@ -57,10 +57,10 @@ public class GuideActivity extends Activity {
 
 
     private void initViews(){
-        vpGuide= (ViewPager) findViewById(R.id.vpGuide);
-        llPointGroup= (LinearLayout) findViewById(R.id.ll_point_group);
+        vpGuide=  findViewById(R.id.vpGuide);
+        llPointGroup=  findViewById(R.id.ll_point_group);
         viewRedPoint=findViewById(R.id.view_red_point);
-        btnStart= (Button) findViewById(R.id.btn_start);
+        btnStart=  findViewById(R.id.btn_start);
         mImageViewList=new ArrayList<ImageView>();
 
         //初始化引导页的3个页面

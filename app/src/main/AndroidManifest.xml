@@ -38,7 +38,7 @@
         //开发者申请的key
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="a19a6ff79b218d08a1213ed5779906a1" />
+            android:value="00cad122351db2ce77476399ea3380e0" />
 
         <service android:name="com.amap.api.location.APSService" />
 

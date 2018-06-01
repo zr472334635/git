@@ -75,7 +75,7 @@
                     android:id="@+id/edt_ureg_cofpswd"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="密码"
+                    android:hint="确认密码"
                     android:textColorHint="@color/colorSkyBlue"
                     android:inputType="textPassword"
                     android:textCursorDrawable="@drawable/color_cursor"
